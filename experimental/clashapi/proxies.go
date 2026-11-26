@@ -216,7 +216,13 @@ func getProxyDelay(server *Server) func(w http.ResponseWriter, r *http.Request) 
 	return func(w http.ResponseWriter, r *http.Request) {
 		query := r.URL.Query()
 		url := query.Get("url")
-		if strings.HasPrefix(url, "http://") {
+		// Opt-in multi-sample mode (v2rayNG-style): enabled only when the
+		// caller passes samples and/or warmup. Default behavior for existing
+		// clients is unchanged.
+		samplesParam := query.Get("samples")
+		warmupParam := query.Get("warmup")
+		multiSample := samplesParam != "" || warmupParam != ""
+		if !multiSample && strings.HasPrefix(url, "http://") {
 			url = ""
 		}
 		timeout, err := strconv.ParseInt(query.Get("timeout"), 10, 16)
@@ -225,12 +231,37 @@ func getProxyDelay(server *Server) func(w http.ResponseWriter, r *http.Request) 
 			render.JSON(w, r, ErrBadRequest)
 			return
 		}
+		samples := 3
+		if samplesParam != "" {
+			parsedSamples, parseErr := strconv.Atoi(samplesParam)
+			if parseErr != nil || parsedSamples < 1 || parsedSamples > 10 {
+				render.Status(r, http.StatusBadRequest)
+				render.JSON(w, r, ErrBadRequest)
+				return
+			}
+			samples = parsedSamples
+		}
+		warmup := true
+		if warmupParam != "" {
+			parsedWarmup, parseErr := strconv.ParseBool(warmupParam)
+			if parseErr != nil {
+				render.Status(r, http.StatusBadRequest)
+				render.JSON(w, r, ErrBadRequest)
+				return
+			}
+			warmup = parsedWarmup
+		}
 
 		proxy := r.Context().Value(CtxKeyProxy).(adapter.Outbound)
 		ctx, cancel := context.WithTimeout(context.Background(), time.Millisecond*time.Duration(timeout))
 		defer cancel()
 
-		delay, err := urltest.URLTest(ctx, url, proxy)
+		var delay uint16
+		if multiSample {
+			delay, err = urltest.URLTestMulti(ctx, url, proxy, samples, warmup)
+		} else {
+			delay, err = urltest.URLTest(ctx, url, proxy)
+		}
 		defer func() {
 			realTag := group.RealTag(proxy, N.NetworkTCP)
 			if err != nil {
