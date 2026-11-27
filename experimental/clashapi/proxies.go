@@ -253,6 +253,10 @@ func getProxyDelay(server *Server) func(w http.ResponseWriter, r *http.Request) 
 		}
 
 		proxy := r.Context().Value(CtxKeyProxy).(adapter.Outbound)
+		// The timeout is the total budget for the whole test. In
+		// multi-sample mode that budget is shared serially by the warm-up
+		// plus all samples, so callers should size it accordingly (each
+		// individual request is additionally capped inside URLTestMulti).
 		ctx, cancel := context.WithTimeout(context.Background(), time.Millisecond*time.Duration(timeout))
 		defer cancel()
 

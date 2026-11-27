@@ -7,7 +7,6 @@ import (
 	"net"
 	"net/http"
 	"net/url"
-	"sort"
 	"sync"
 	"time"
 
@@ -163,111 +162,4 @@ func urlTest(ctx context.Context, link string, detour N.Dialer) (t uint16, err e
 	resp.Body.Close()
 	t = uint16(time.Since(start) / time.Millisecond)
 	return
-}
-
-// URLTestMulti is a v2rayNG-style latency test: unlike URLTest, which times a
-// single cold request (fresh connection, fresh TLS session, no reuse) and
-// reports that one sample, URLTestMulti shares one HTTP client/transport
-// across all requests so connection pooling behaves like a real client,
-// optionally discards one warm-up request (which pays the dial, DNS and TLS
-// costs), then measures samples requests and reports the median delay.
-//
-// The measured samples still go through the detour on a pooled connection,
-// so the result approximates the latency a real application sees on an
-// already-established proxy connection instead of full connection setup.
-func URLTestMulti(ctx context.Context, link string, detour N.Dialer, samples int, warmup bool) (uint16, error) {
-	if samples <= 0 {
-		samples = 3
-	}
-	if samples > 10 {
-		samples = 10
-	}
-	if link == "" {
-		link = "https://www.gstatic.com/generate_204"
-	}
-	transport := &http.Transport{
-		DialContext: func(ctx context.Context, network, addr string) (net.Conn, error) {
-			host, port, err := net.SplitHostPort(addr)
-			if err != nil {
-				return nil, err
-			}
-			return detour.DialContext(ctx, network, M.ParseSocksaddrHostPortStr(host, port))
-		},
-		TLSClientConfig: &tls.Config{
-			Time:    ntp.TimeFuncFromContext(ctx),
-			RootCAs: adapter.RootPoolFromContext(ctx),
-		},
-		MaxIdleConnsPerHost: 1,
-	}
-	defer transport.CloseIdleConnections()
-	client := &http.Client{
-		Transport: transport,
-		CheckRedirect: func(req *http.Request, via []*http.Request) error {
-			return http.ErrUseLastResponse
-		},
-		Timeout: C.TCPTimeout,
-	}
-	doSample := func(requestCtx context.Context) (uint16, error) {
-		req, err := http.NewRequestWithContext(requestCtx, http.MethodHead, link, nil)
-		if err != nil {
-			return 0, err
-		}
-		start := time.Now()
-		resp, err := client.Do(req)
-		if err != nil {
-			return 0, err
-		}
-		resp.Body.Close()
-		delay := time.Since(start) / time.Millisecond
-		if delay > 65535 {
-			delay = 65535
-		}
-		return uint16(delay), nil
-	}
-	if warmup {
-		warmContext := ctx
-		if multiplexOutbound, isMultiplexOutbound := common.Cast[adapter.OutboundWithMultiplex](detour); isMultiplexOutbound && multiplexOutbound.MultiplexEnabled() {
-			warmContext = adapter.ContextWithKeepSession(warmContext)
-			warmContext = mux.ContextWithKeepSession(warmContext)
-			warmContext = contextWithQUICKeepSession(warmContext)
-			warmContext = snell.ContextWithKeepSession(warmContext)
-		}
-		// The warm-up result is intentionally discarded: it establishes the
-		// pooled connection (and any DNS/TLS/session caches along the chain)
-		// that the measured samples then reuse. Its error is not fatal; the
-		// measured samples below report failures on their own.
-		_, _ = doSample(warmContext)
-	}
-	delays := make([]uint16, 0, samples)
-	var lastErr error
-	for i := 0; i < samples; i++ {
-		delay, err := doSample(ctx)
-		if err != nil {
-			lastErr = err
-			if ctx.Err() != nil {
-				return 0, err
-			}
-			continue
-		}
-		delays = append(delays, delay)
-	}
-	if len(delays) == 0 {
-		return 0, lastErr
-	}
-	return MedianDelay(delays), nil
-}
-
-// MedianDelay returns the median of the given delay samples.
-func MedianDelay(delays []uint16) uint16 {
-	if len(delays) == 0 {
-		return 0
-	}
-	sorted := make([]uint16, len(delays))
-	copy(sorted, delays)
-	sort.Slice(sorted, func(i, j int) bool { return sorted[i] < sorted[j] })
-	middle := len(sorted) / 2
-	if len(sorted)%2 == 1 {
-		return sorted[middle]
-	}
-	return uint16((uint32(sorted[middle-1]) + uint32(sorted[middle])) / 2)
 }
