@@ -48,8 +48,7 @@ jobs:
           name: sing-box-1.14.4-finch.2-linux-amd64-musl
           path: src/sing-box-finch2
       - name: Attach to release
-        working-directory: src
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create finch-1.14.4-2 sing-box-finch2 --title "sing-box 1.14.4-finch.2 (urltest multi-sample)" --notes "Full-tag musl build of v1.14.4 + urltest multi-sample patch, built by GitHub Actions." || gh release upload finch-1.14.4-2 sing-box-finch2 --clobber
+          gh release create finch-1.14.4-2 src/sing-box-finch2 -R kdiy7396/sing-box --title "sing-box 1.14.4-finch.2 (urltest multi-sample)" --notes "Full-tag musl build of v1.14.4 + urltest multi-sample patch, built by GitHub Actions." || gh release upload finch-1.14.4-2 src/sing-box-finch2 -R kdiy7396/sing-box --clobber
