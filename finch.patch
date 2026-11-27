@@ -1,1 +1,361 @@
-ZGlmZiAtLWdpdCBhL2NvbW1vbi91cmx0ZXN0L3VybHRlc3RfbXVsdGkuZ28gYi9jb21tb24vdXJsdGVzdC91cmx0ZXN0X211bHRpLmdvCm5ldyBmaWxlIG1vZGUgMTAwNjQ0CmluZGV4IDAwMDAwMDAuLjYzMTdjZDMKLS0tIC9kZXYvbnVsbAorKysgYi9jb21tb24vdXJsdGVzdC91cmx0ZXN0X211bHRpLmdvCkBAIC0wLDAgKzEsMTU5IEBACitwYWNrYWdlIHVybHRlc3QKKworLy8gVGhpcyBmaWxlIGlzIGludGVudGlvbmFsbHkgc2VsZi1jb250YWluZWQ6IGl0IGFkZHMgbXVsdGktc2FtcGxlIGxhdGVuY3kKKy8vIHRlc3Rpbmcgd2l0aG91dCBtb2RpZnlpbmcgYW55IHVwc3RyZWFtIGZ1bmN0aW9uIGluIHVybHRlc3QuZ28sIHNvIHRoZQorLy8gcGF0Y2ggY2FuIGJlIGNhcnJpZWQgYWNyb3NzIHNpbmctYm94IHJlbGVhc2VzIGJ5IGNvcHlpbmcgdGhpcyBmaWxlIChhbmQKKy8vIHRoZSB0ZXN0IGZpbGUpIGFuZCByZS1hcHBseWluZyB0aGUgc21hbGwgQ2xhc2ggQVBJIGhhbmRsZXIgY2hhbmdlIGluCisvLyBleHBlcmltZW50YWwvY2xhc2hhcGkvcHJveGllcy5nby4KKworaW1wb3J0ICgKKwkiY29udGV4dCIKKwkiY3J5cHRvL3RscyIKKwkiZm10IgorCSJuZXQiCisJIm5ldC9odHRwIgorCSJzb3J0IgorCSJ0aW1lIgorCisJImdpdGh1Yi5jb20vc2FnZXJuZXQvc2luZy1ib3gvYWRhcHRlciIKKwlDICJnaXRodWIuY29tL3NhZ2VybmV0L3NpbmctYm94L2NvbnN0YW50IgorCSJnaXRodWIuY29tL3NhZ2VybmV0L3NpbmctbXV4IgorCSJnaXRodWIuY29tL3NhZ2VybmV0L3Npbmctc25lbGwiCisJImdpdGh1Yi5jb20vc2FnZXJuZXQvc2luZy9jb21tb24iCisJTSAiZ2l0aHViLmNvbS9zYWdlcm5ldC9zaW5nL2NvbW1vbi9tZXRhZGF0YSIKKwlOICJnaXRodWIuY29tL3NhZ2VybmV0L3NpbmcvY29tbW9uL25ldHdvcmsiCisJImdpdGh1Yi5jb20vc2FnZXJuZXQvc2luZy9jb21tb24vbnRwIgorKQorCisvLyBVUkxUZXN0TXVsdGkgaXMgYSB2MnJheU5HLXN0eWxlIGxhdGVuY3kgdGVzdDogdW5saWtlIFVSTFRlc3QsIHdoaWNoIHRpbWVzIGEKKy8vIHNpbmdsZSBjb2xkIHJlcXVlc3QgKGZyZXNoIGNvbm5lY3Rpb24sIGZyZXNoIFRMUyBzZXNzaW9uLCBubyByZXVzZSkgYW5kCisvLyByZXBvcnRzIHRoYXQgb25lIHNhbXBsZSwgVVJMVGVzdE11bHRpIHNoYXJlcyBvbmUgSFRUUCBjbGllbnQvdHJhbnNwb3J0CisvLyBhY3Jvc3MgYWxsIHJlcXVlc3RzIHNvIGNvbm5lY3Rpb24gcG9vbGluZyBiZWhhdmVzIGxpa2UgYSByZWFsIGNsaWVudCwKKy8vIG9wdGlvbmFsbHkgZGlzY2FyZHMgb25lIHdhcm0tdXAgcmVxdWVzdCAod2hpY2ggcGF5cyB0aGUgZGlhbCwgRE5TIGFuZCBUTFMKKy8vIGNvc3RzKSwgdGhlbiBtZWFzdXJlcyBzYW1wbGVzIHJlcXVlc3RzIGFuZCByZXBvcnRzIHRoZSBtZWRpYW4gZGVsYXkuCisvLworLy8gVGhlIG1lYXN1cmVkIHNhbXBsZXMgc3RpbGwgZ28gdGhyb3VnaCB0aGUgZGV0b3VyIG9uIGEgcG9vbGVkIGNvbm5lY3Rpb24sCisvLyBzbyB0aGUgcmVzdWx0IGFwcHJveGltYXRlcyB0aGUgbGF0ZW5jeSBhIHJlYWwgYXBwbGljYXRpb24gc2VlcyBvbiBhbgorLy8gYWxyZWFkeS1lc3RhYmxpc2hlZCBwcm94eSBjb25uZWN0aW9uIGluc3RlYWQgb2YgZnVsbCBjb25uZWN0aW9uIHNldHVwLgorLy8KKy8vIFRpbWVvdXQgc2VtYW50aWNzOiB0aGUgY2FsbGVyJ3MgY3R4IGlzIHRoZSB0b3RhbCBidWRnZXQgZm9yIHRoZSB3YXJtLXVwCisvLyBwbHVzIGFsbCBzYW1wbGVzICh0aGV5IHJ1biBzZXJpYWxseSkuIEVhY2ggaW5kaXZpZHVhbCByZXF1ZXN0IGlzCisvLyBhZGRpdGlvbmFsbHkgY2FwcGVkIGJ5IGEgcGVyLXNhbXBsZSB0aW1lb3V0IG9mIEMuVENQVGltZW91dCBkZXJpdmVkIGZyb20KKy8vIHRoYXQgY3R4LCBzbyBvbmUgaHVuZyByZXF1ZXN0IGNhbm5vdCBzdGFydmUgdGhlIHJlbWFpbmluZyBzYW1wbGVzIG9mCisvLyB0aGVpciBjaGFuY2UgdG8gcnVuLCBidXQgY2FsbGVycyBzaG91bGQgc3RpbGwgc2l6ZSB0aGUgdG90YWwgYnVkZ2V0IGZvcgorLy8gMStzYW1wbGVzIHJlcXVlc3RzIChlLmcuIGEgMnMgYnVkZ2V0IGNhbm5vdCBmaXQgMTAgc2FtcGxlcyBvZiBhIDMwMG1zCisvLyBwYXRoKS4gTGlrZSB1cmxUZXN0LCByZXF1ZXN0cyB1c2UgSEVBRCBhbmQgdGhlIHJlc3BvbnNlIHN0YXR1cyBpcyBub3QKKy8vIGNoZWNrZWQsIHNvIGVuZHBvaW50cyB0aGF0IGFuc3dlciBIRUFEIGRpZmZlcmVudGx5IChlLmcuIDQwNSkgc3RpbGwKKy8vIHByb2R1Y2UgYSBtZWFzdXJlbWVudCwgd2l0aCB0aGUgc2FtZSBzZW1hbnRpY3MgYXMgdGhlIHNpbmdsZSB0ZXN0LgorLy8KKy8vIFJlc3VsdCBzZW1hbnRpY3M6IGF0IGxlYXN0IGhhbGYgb2YgdGhlIG1lYXN1cmVkIHNhbXBsZXMgKHJvdW5kZWQgdXApCisvLyBtdXN0IHN1Y2NlZWQsIG90aGVyd2lzZSB0aGUgcnVuIGlzIHJlcG9ydGVkIGFzIGZhaWxlZCDigJQgYSBtZWRpYW4gYnVpbHQKKy8vIGZyb20gYSBzbWFsbCBtaW5vcml0eSBvZiBzdWNjZXNzZXMgd291bGQgaGlkZSBhIG1vc3RseS1icm9rZW4gcGF0aC4KK2Z1bmMgVVJMVGVzdE11bHRpKGN0eCBjb250ZXh0LkNvbnRleHQsIGxpbmsgc3RyaW5nLCBkZXRvdXIgTi5EaWFsZXIsIHNhbXBsZXMgaW50LCB3YXJtdXAgYm9vbCkgKHVpbnQxNiwgZXJyb3IpIHsKKwlpZiBzYW1wbGVzIDw9IDAgeworCQlzYW1wbGVzID0gMworCX0KKwlpZiBzYW1wbGVzID4gMTAgeworCQlzYW1wbGVzID0gMTAKKwl9CisJaWYgbGluayA9PSAiIiB7CisJCWxpbmsgPSAiaHR0cHM6Ly93d3cuZ3N0YXRpYy5jb20vZ2VuZXJhdGVfMjA0IgorCX0KKwl0cmFuc3BvcnQgOj0gJmh0dHAuVHJhbnNwb3J0eworCQlEaWFsQ29udGV4dDogZnVuYyhjdHggY29udGV4dC5Db250ZXh0LCBuZXR3b3JrLCBhZGRyIHN0cmluZykgKG5ldC5Db25uLCBlcnJvcikgeworCQkJaG9zdCwgcG9ydCwgZXJyIDo9IG5ldC5TcGxpdEhvc3RQb3J0KGFkZHIpCisJCQlpZiBlcnIgIT0gbmlsIHsKKwkJCQlyZXR1cm4gbmlsLCBlcnIKKwkJCX0KKwkJCXJldHVybiBkZXRvdXIuRGlhbENvbnRleHQoY3R4LCBuZXR3b3JrLCBNLlBhcnNlU29ja3NhZGRySG9zdFBvcnRTdHIoaG9zdCwgcG9ydCkpCisJCX0sCisJCVRMU0NsaWVudENvbmZpZzogJnRscy5Db25maWd7CisJCQlUaW1lOiAgICBudHAuVGltZUZ1bmNGcm9tQ29udGV4dChjdHgpLAorCQkJUm9vdENBczogYWRhcHRlci5Sb290UG9vbEZyb21Db250ZXh0KGN0eCksCisJCX0sCisJCU1heElkbGVDb25uc1Blckhvc3Q6IDEsCisJfQorCWRlZmVyIHRyYW5zcG9ydC5DbG9zZUlkbGVDb25uZWN0aW9ucygpCisJY2xpZW50IDo9ICZodHRwLkNsaWVudHsKKwkJVHJhbnNwb3J0OiB0cmFuc3BvcnQsCisJCUNoZWNrUmVkaXJlY3Q6IGZ1bmMocmVxICpodHRwLlJlcXVlc3QsIHZpYSBbXSpodHRwLlJlcXVlc3QpIGVycm9yIHsKKwkJCXJldHVybiBodHRwLkVyclVzZUxhc3RSZXNwb25zZQorCQl9LAorCQlUaW1lb3V0OiBDLlRDUFRpbWVvdXQsCisJfQorCS8vIEZvciBtdWx0aXBsZXggZGV0b3Vycywga2VlcC1zZXNzaW9uIGFwcGxpZXMgdG8gZXZlcnkgcmVxdWVzdCwgbm90CisJLy8ganVzdCB0aGUgd2FybS11cDogdGhlIHdhcm0tdXAgZXN0YWJsaXNoZXMgdGhlIGtlcHQgc2Vzc2lvbiBhbmQgdGhlCisJLy8gbWVhc3VyZWQgc2FtcGxlcyBtdXN0IGRpYWwgdW5kZXIgdGhlIHNhbWUgc2Vzc2lvbiBzZW1hbnRpY3MgdG8gcmV1c2UKKwkvLyBpdCwgaW5zdGVhZCBvZiBzd2l0Y2hpbmcgY29udGV4dCBmbGF2b3JzIG1pZC1ydW4uCisJcmVxdWVzdEN0eCA6PSBjdHgKKwlpZiBtdWx0aXBsZXhPdXRib3VuZCwgaXNNdWx0aXBsZXhPdXRib3VuZCA6PSBjb21tb24uQ2FzdFthZGFwdGVyLk91dGJvdW5kV2l0aE11bHRpcGxleF0oZGV0b3VyKTsgaXNNdWx0aXBsZXhPdXRib3VuZCAmJiBtdWx0aXBsZXhPdXRib3VuZC5NdWx0aXBsZXhFbmFibGVkKCkgeworCQlyZXF1ZXN0Q3R4ID0gYWRhcHRlci5Db250ZXh0V2l0aEtlZXBTZXNzaW9uKHJlcXVlc3RDdHgpCisJCXJlcXVlc3RDdHggPSBtdXguQ29udGV4dFdpdGhLZWVwU2Vzc2lvbihyZXF1ZXN0Q3R4KQorCQlyZXF1ZXN0Q3R4ID0gY29udGV4dFdpdGhRVUlDS2VlcFNlc3Npb24ocmVxdWVzdEN0eCkKKwkJcmVxdWVzdEN0eCA9IHNuZWxsLkNvbnRleHRXaXRoS2VlcFNlc3Npb24ocmVxdWVzdEN0eCkKKwl9CisJZG9TYW1wbGUgOj0gZnVuYygpICh1aW50MTYsIGVycm9yKSB7CisJCS8vIFBlci1zYW1wbGUgdGltZW91dCBkZXJpdmVkIGZyb20gdGhlIHNoYXJlZCBidWRnZXQ6IG9uZSBodW5nCisJCS8vIHJlcXVlc3QgaXMgY3V0IGF0IEMuVENQVGltZW91dCBpbnN0ZWFkIG9mIGNvbnN1bWluZyB0aGUgd2hvbGUKKwkJLy8gcnVuLCBsZWF2aW5nIHRoZSByZW1haW5pbmcgc2FtcGxlcyB0aGVpciBzaGFyZSBvZiB0aGUgYnVkZ2V0LgorCQlzYW1wbGVDdHgsIGNhbmNlbCA6PSBjb250ZXh0LldpdGhUaW1lb3V0KHJlcXVlc3RDdHgsIEMuVENQVGltZW91dCkKKwkJZGVmZXIgY2FuY2VsKCkKKwkJcmVxLCBlcnIgOj0gaHR0cC5OZXdSZXF1ZXN0V2l0aENvbnRleHQoc2FtcGxlQ3R4LCBodHRwLk1ldGhvZEhlYWQsIGxpbmssIG5pbCkKKwkJaWYgZXJyICE9IG5pbCB7CisJCQlyZXR1cm4gMCwgZXJyCisJCX0KKwkJc3RhcnQgOj0gdGltZS5Ob3coKQorCQlyZXNwLCBlcnIgOj0gY2xpZW50LkRvKHJlcSkKKwkJaWYgZXJyICE9IG5pbCB7CisJCQlyZXR1cm4gMCwgZXJyCisJCX0KKwkJcmVzcC5Cb2R5LkNsb3NlKCkKKwkJZGVsYXkgOj0gdGltZS5TaW5jZShzdGFydCkgLyB0aW1lLk1pbGxpc2Vjb25kCisJCWlmIGRlbGF5ID4gNjU1MzUgeworCQkJZGVsYXkgPSA2NTUzNQorCQl9CisJCXJldHVybiB1aW50MTYoZGVsYXkpLCBuaWwKKwl9CisJaWYgd2FybXVwIHsKKwkJLy8gVGhlIHdhcm0tdXAgcmVzdWx0IGlzIGludGVudGlvbmFsbHkgZGlzY2FyZGVkOiBpdCBlc3RhYmxpc2hlcyB0aGUKKwkJLy8gcG9vbGVkIGNvbm5lY3Rpb24gKGFuZCBhbnkgRE5TL1RMUy9zZXNzaW9uIGNhY2hlcyBhbG9uZyB0aGUgY2hhaW4pCisJCS8vIHRoYXQgdGhlIG1lYXN1cmVkIHNhbXBsZXMgdGhlbiByZXVzZS4gSXRzIGVycm9yIGlzIG5vdCBmYXRhbDsgdGhlCisJCS8vIG1lYXN1cmVkIHNhbXBsZXMgYmVsb3cgcmVwb3J0IGZhaWx1cmVzIG9uIHRoZWlyIG93bi4KKwkJXywgXyA9IGRvU2FtcGxlKCkKKwl9CisJZGVsYXlzIDo9IG1ha2UoW111aW50MTYsIDAsIHNhbXBsZXMpCisJdmFyIGxhc3RFcnIgZXJyb3IKKwlmb3IgaSA6PSAwOyBpIDwgc2FtcGxlczsgaSsrIHsKKwkJZGVsYXksIGVyciA6PSBkb1NhbXBsZSgpCisJCWlmIGVyciAhPSBuaWwgeworCQkJbGFzdEVyciA9IGVycgorCQkJaWYgY3R4LkVycigpICE9IG5pbCB7CisJCQkJcmV0dXJuIDAsIGVycgorCQkJfQorCQkJY29udGludWUKKwkJfQorCQlkZWxheXMgPSBhcHBlbmQoZGVsYXlzLCBkZWxheSkKKwl9CisJaWYgbGVuKGRlbGF5cykgPCAoc2FtcGxlcysxKS8yIHsKKwkJaWYgbGFzdEVyciAhPSBuaWwgeworCQkJcmV0dXJuIDAsIGZtdC5FcnJvcmYoInVybHRlc3Q6IG9ubHkgJWQgb2YgJWQgc2FtcGxlcyBzdWNjZWVkZWQ6ICV3IiwgbGVuKGRlbGF5cyksIHNhbXBsZXMsIGxhc3RFcnIpCisJCX0KKwkJcmV0dXJuIDAsIGZtdC5FcnJvcmYoInVybHRlc3Q6IG9ubHkgJWQgb2YgJWQgc2FtcGxlcyBzdWNjZWVkZWQiLCBsZW4oZGVsYXlzKSwgc2FtcGxlcykKKwl9CisJcmV0dXJuIE1lZGlhbkRlbGF5KGRlbGF5cyksIG5pbAorfQorCisvLyBNZWRpYW5EZWxheSByZXR1cm5zIHRoZSBtZWRpYW4gb2YgdGhlIGdpdmVuIGRlbGF5IHNhbXBsZXMuCitmdW5jIE1lZGlhbkRlbGF5KGRlbGF5cyBbXXVpbnQxNikgdWludDE2IHsKKwlpZiBsZW4oZGVsYXlzKSA9PSAwIHsKKwkJcmV0dXJuIDAKKwl9CisJc29ydGVkIDo9IG1ha2UoW111aW50MTYsIGxlbihkZWxheXMpKQorCWNvcHkoc29ydGVkLCBkZWxheXMpCisJc29ydC5TbGljZShzb3J0ZWQsIGZ1bmMoaSwgaiBpbnQpIGJvb2wgeyByZXR1cm4gc29ydGVkW2ldIDwgc29ydGVkW2pdIH0pCisJbWlkZGxlIDo9IGxlbihzb3J0ZWQpIC8gMgorCWlmIGxlbihzb3J0ZWQpJTIgPT0gMSB7CisJCXJldHVybiBzb3J0ZWRbbWlkZGxlXQorCX0KKwlyZXR1cm4gdWludDE2KCh1aW50MzIoc29ydGVkW21pZGRsZS0xXSkgKyB1aW50MzIoc29ydGVkW21pZGRsZV0pKSAvIDIpCit9CmRpZmYgLS1naXQgYS9jb21tb24vdXJsdGVzdC91cmx0ZXN0X211bHRpX3Rlc3QuZ28gYi9jb21tb24vdXJsdGVzdC91cmx0ZXN0X211bHRpX3Rlc3QuZ28KbmV3IGZpbGUgbW9kZSAxMDA2NDQKaW5kZXggMDAwMDAwMC4uNDFjNGIyMwotLS0gL2Rldi9udWxsCisrKyBiL2NvbW1vbi91cmx0ZXN0L3VybHRlc3RfbXVsdGlfdGVzdC5nbwpAQCAtMCwwICsxLDEyOCBAQAorcGFja2FnZSB1cmx0ZXN0CisKK2ltcG9ydCAoCisJImNvbnRleHQiCisJImVycm9ycyIKKwkibmV0IgorCSJuZXQvaHR0cCIKKwkibmV0L2h0dHAvaHR0cHRlc3QiCisJInN5bmMvYXRvbWljIgorCSJ0ZXN0aW5nIgorCSJ0aW1lIgorCisJTSAiZ2l0aHViLmNvbS9zYWdlcm5ldC9zaW5nL2NvbW1vbi9tZXRhZGF0YSIKKykKKwordHlwZSBkaXJlY3REaWFsZXIgc3RydWN0IHsKKwlkaWFsZXIgbmV0LkRpYWxlcgorfQorCitmdW5jIChkICpkaXJlY3REaWFsZXIpIERpYWxDb250ZXh0KGN0eCBjb250ZXh0LkNvbnRleHQsIG5ldHdvcmsgc3RyaW5nLCBkZXN0aW5hdGlvbiBNLlNvY2tzYWRkcikgKG5ldC5Db25uLCBlcnJvcikgeworCXJldHVybiBkLmRpYWxlci5EaWFsQ29udGV4dChjdHgsIG5ldHdvcmssIGRlc3RpbmF0aW9uLlN0cmluZygpKQorfQorCitmdW5jIChkICpkaXJlY3REaWFsZXIpIExpc3RlblBhY2tldChjdHggY29udGV4dC5Db250ZXh0LCBkZXN0aW5hdGlvbiBNLlNvY2tzYWRkcikgKG5ldC5QYWNrZXRDb25uLCBlcnJvcikgeworCXZhciBsaXN0ZW5Db25maWcgbmV0Lkxpc3RlbkNvbmZpZworCXJldHVybiBsaXN0ZW5Db25maWcuTGlzdGVuUGFja2V0KGN0eCwgInVkcCIsIGRlc3RpbmF0aW9uLlN0cmluZygpKQorfQorCitmdW5jIFRlc3RNZWRpYW5EZWxheSh0ICp0ZXN0aW5nLlQpIHsKKwljYXNlcyA6PSBbXXN0cnVjdCB7CisJCWlucHV0ICAgIFtddWludDE2CisJCWV4cGVjdGVkIHVpbnQxNgorCX17CisJCXtuaWwsIDB9LAorCQl7W111aW50MTZ7MTAwfSwgMTAwfSwKKwkJe1tddWludDE2ezMwMCwgMTAwLCAyMDB9LCAyMDB9LAorCQl7W111aW50MTZ7MTAwLCAyMDAsIDMwMCwgNDAwfSwgMjUwfSwKKwkJe1tddWludDE2ezUwMDgsIDE3MCwgMTgwfSwgMTgwfSwKKwl9CisJZm9yIF8sIGMgOj0gcmFuZ2UgY2FzZXMgeworCQlpZiBnb3QgOj0gTWVkaWFuRGVsYXkoYy5pbnB1dCk7IGdvdCAhPSBjLmV4cGVjdGVkIHsKKwkJCXQuRXJyb3JmKCJNZWRpYW5EZWxheSgldikgPSAlZCwgd2FudCAlZCIsIGMuaW5wdXQsIGdvdCwgYy5leHBlY3RlZCkKKwkJfQorCX0KK30KKworZnVuYyBUZXN0VVJMVGVzdE11bHRpUmV1c2VzQ29ubmVjdGlvbih0ICp0ZXN0aW5nLlQpIHsKKwl2YXIgcmVxdWVzdHMgYXRvbWljLkludDMyCisJdmFyIG5ld0Nvbm5zIGF0b21pYy5JbnQzMgorCXNlcnZlciA6PSBodHRwdGVzdC5OZXdVbnN0YXJ0ZWRTZXJ2ZXIoaHR0cC5IYW5kbGVyRnVuYyhmdW5jKHcgaHR0cC5SZXNwb25zZVdyaXRlciwgciAqaHR0cC5SZXF1ZXN0KSB7CisJCXJlcXVlc3RzLkFkZCgxKQorCQl3LldyaXRlSGVhZGVyKGh0dHAuU3RhdHVzTm9Db250ZW50KQorCX0pKQorCXNlcnZlci5Db25maWcuQ29ublN0YXRlID0gZnVuYyhjb25uIG5ldC5Db25uLCBzdGF0ZSBodHRwLkNvbm5TdGF0ZSkgeworCQlpZiBzdGF0ZSA9PSBodHRwLlN0YXRlTmV3IHsKKwkJCW5ld0Nvbm5zLkFkZCgxKQorCQl9CisJfQorCXNlcnZlci5TdGFydCgpCisJZGVmZXIgc2VydmVyLkNsb3NlKCkKKworCWN0eCwgY2FuY2VsIDo9IGNvbnRleHQuV2l0aFRpbWVvdXQoY29udGV4dC5CYWNrZ3JvdW5kKCksIDE1KnRpbWUuU2Vjb25kKQorCWRlZmVyIGNhbmNlbCgpCisJZGVsYXksIGVyciA6PSBVUkxUZXN0TXVsdGkoY3R4LCBzZXJ2ZXIuVVJMLCAmZGlyZWN0RGlhbGVye30sIDMsIHRydWUpCisJaWYgZXJyICE9IG5pbCB7CisJCXQuRmF0YWxmKCJVUkxUZXN0TXVsdGk6ICV2IiwgZXJyKQorCX0KKwkvLyAxIHdhcm0tdXAgKyAzIG1lYXN1cmVkIHNhbXBsZXMuCisJaWYgZ290IDo9IHJlcXVlc3RzLkxvYWQoKTsgZ290ICE9IDQgeworCQl0LkVycm9yZigic2VydmVyIHNhdyAlZCByZXF1ZXN0cywgd2FudCA0IiwgZ290KQorCX0KKwkvLyBBbGwgNCByZXF1ZXN0cyBtdXN0IHNoYXJlIHRoZSBzaW5nbGUgcG9vbGVkIGNvbm5lY3Rpb24gZXN0YWJsaXNoZWQKKwkvLyBieSB0aGUgd2FybS11cDsgYSBmcmVzaCBjb25uZWN0aW9uIHBlciByZXF1ZXN0IGlzIGV4YWN0bHkgdGhlIGNvbGQKKwkvLyBiZWhhdmlvciB0aGlzIGZ1bmN0aW9uIGV4aXN0cyB0byBhdm9pZC4KKwlpZiBnb3QgOj0gbmV3Q29ubnMuTG9hZCgpOyBnb3QgIT0gMSB7CisJCXQuRXJyb3JmKCJzZXJ2ZXIgc2F3ICVkIG5ldyBjb25uZWN0aW9ucywgd2FudCAxIChjb25uZWN0aW9uIHJldXNlKSIsIGdvdCkKKwl9CisJdC5Mb2dmKCJtZWRpYW4gZGVsYXk6ICVkIG1zIiwgZGVsYXkpCit9CisKK3R5cGUgZmxha3lEaWFsZXIgc3RydWN0IHsKKwlkaXJlY3REaWFsZXIKKwlkaWFscyAgYXRvbWljLkludDMyCisJZmFpbE9uIG1hcFtpbnQzMl1ib29sCit9CisKK2Z1bmMgKGQgKmZsYWt5RGlhbGVyKSBEaWFsQ29udGV4dChjdHggY29udGV4dC5Db250ZXh0LCBuZXR3b3JrIHN0cmluZywgZGVzdGluYXRpb24gTS5Tb2Nrc2FkZHIpIChuZXQuQ29ubiwgZXJyb3IpIHsKKwluIDo9IGQuZGlhbHMuQWRkKDEpCisJaWYgZC5mYWlsT25bbl0geworCQlyZXR1cm4gbmlsLCBlcnJvcnMuTmV3KCJzaW11bGF0ZWQgZGlhbCBmYWlsdXJlIikKKwl9CisJcmV0dXJuIGQuZGlyZWN0RGlhbGVyLkRpYWxDb250ZXh0KGN0eCwgbmV0d29yaywgZGVzdGluYXRpb24pCit9CisKK2Z1bmMgVGVzdFVSTFRlc3RNdWx0aVBhcnRpYWxGYWlsdXJlKHQgKnRlc3RpbmcuVCkgeworCS8vIENvbm5lY3Rpb246IGNsb3NlIG9uIGV2ZXJ5IHJlc3BvbnNlIGZvcmNlcyBlYWNoIHNhbXBsZSB0byBkaWFsLCBzbworCS8vIGRpYWwgZmFpbHVyZXMgbWFwIDE6MSB0byBzYW1wbGUgZmFpbHVyZXMuCisJc2VydmVyIDo9IGh0dHB0ZXN0Lk5ld1NlcnZlcihodHRwLkhhbmRsZXJGdW5jKGZ1bmModyBodHRwLlJlc3BvbnNlV3JpdGVyLCByICpodHRwLlJlcXVlc3QpIHsKKwkJdy5IZWFkZXIoKS5TZXQoIkNvbm5lY3Rpb24iLCAiY2xvc2UiKQorCQl3LldyaXRlSGVhZGVyKGh0dHAuU3RhdHVzTm9Db250ZW50KQorCX0pKQorCWRlZmVyIHNlcnZlci5DbG9zZSgpCisKKwljdHgsIGNhbmNlbCA6PSBjb250ZXh0LldpdGhUaW1lb3V0KGNvbnRleHQuQmFja2dyb3VuZCgpLCAxNSp0aW1lLlNlY29uZCkKKwlkZWZlciBjYW5jZWwoKQorCisJLy8gMSBvZiAzIHNhbXBsZXMgc3VjY2VlZHM6IGJlbG93IHRoZSBtYWpvcml0eSB0aHJlc2hvbGQsIG11c3QgZXJyb3IuCisJXywgZXJyIDo9IFVSTFRlc3RNdWx0aShjdHgsIHNlcnZlci5VUkwsICZmbGFreURpYWxlcntmYWlsT246IG1hcFtpbnQzMl1ib29sezI6IHRydWUsIDM6IHRydWV9fSwgMywgZmFsc2UpCisJaWYgZXJyID09IG5pbCB7CisJCXQuRmF0YWwoImV4cGVjdGVkIGVycm9yIHdoZW4gb25seSAxIG9mIDMgc2FtcGxlcyBzdWNjZWVkcyIpCisJfQorCS8vIDIgb2YgMyBzYW1wbGVzIHN1Y2NlZWQ6IG1lZGlhbiBvZiB0aGUgc3VjY2Vzc2VzIGlzIHJlcG9ydGVkLgorCWRlbGF5LCBlcnIgOj0gVVJMVGVzdE11bHRpKGN0eCwgc2VydmVyLlVSTCwgJmZsYWt5RGlhbGVye2ZhaWxPbjogbWFwW2ludDMyXWJvb2x7MjogdHJ1ZX19LCAzLCBmYWxzZSkKKwlpZiBlcnIgIT0gbmlsIHsKKwkJdC5GYXRhbGYoImV4cGVjdGVkIHN1Y2Nlc3Mgd2l0aCAyIG9mIDMgc2FtcGxlcywgZ290OiAldiIsIGVycikKKwl9CisJdC5Mb2dmKCJwYXJ0aWFsLWZhaWx1cmUgbWVkaWFuIGRlbGF5OiAlZCBtcyIsIGRlbGF5KQorfQorCitmdW5jIFRlc3RVUkxUZXN0TXVsdGlGYWlsdXJlKHQgKnRlc3RpbmcuVCkgeworCWN0eCwgY2FuY2VsIDo9IGNvbnRleHQuV2l0aFRpbWVvdXQoY29udGV4dC5CYWNrZ3JvdW5kKCksIDE1KnRpbWUuU2Vjb25kKQorCWRlZmVyIGNhbmNlbCgpCisJLy8gTm90aGluZyBsaXN0ZW5zIG9uIHRoaXMgcG9ydDsgYWxsIHNhbXBsZXMgbXVzdCBmYWlsLgorCV8sIGVyciA6PSBVUkxUZXN0TXVsdGkoY3R4LCAiaHR0cDovLzEyNy4wLjAuMToxL2dlbmVyYXRlXzIwNCIsICZkaXJlY3REaWFsZXJ7fSwgMiwgZmFsc2UpCisJaWYgZXJyID09IG5pbCB7CisJCXQuRmF0YWwoImV4cGVjdGVkIGVycm9yIGZvciB1bnJlYWNoYWJsZSB0YXJnZXQiKQorCX0KK30KZGlmZiAtLWdpdCBhL2V4cGVyaW1lbnRhbC9jbGFzaGFwaS9wcm94aWVzLmdvIGIvZXhwZXJpbWVudGFsL2NsYXNoYXBpL3Byb3hpZXMuZ28KaW5kZXggZmQ4YTZlMi4uMWE1ZjY5MSAxMDA2NDQKLS0tIGEvZXhwZXJpbWVudGFsL2NsYXNoYXBpL3Byb3hpZXMuZ28KKysrIGIvZXhwZXJpbWVudGFsL2NsYXNoYXBpL3Byb3hpZXMuZ28KQEAgLTIxNiw3ICsyMTYsMTMgQEAgZnVuYyBnZXRQcm94eURlbGF5KHNlcnZlciAqU2VydmVyKSBmdW5jKHcgaHR0cC5SZXNwb25zZVdyaXRlciwgciAqaHR0cC5SZXF1ZXN0KQogCXJldHVybiBmdW5jKHcgaHR0cC5SZXNwb25zZVdyaXRlciwgciAqaHR0cC5SZXF1ZXN0KSB7CiAJCXF1ZXJ5IDo9IHIuVVJMLlF1ZXJ5KCkKIAkJdXJsIDo9IHF1ZXJ5LkdldCgidXJsIikKLQkJaWYgc3RyaW5ncy5IYXNQcmVmaXgodXJsLCAiaHR0cDovLyIpIHsKKwkJLy8gT3B0LWluIG11bHRpLXNhbXBsZSBtb2RlICh2MnJheU5HLXN0eWxlKTogZW5hYmxlZCBvbmx5IHdoZW4gdGhlCisJCS8vIGNhbGxlciBwYXNzZXMgc2FtcGxlcyBhbmQvb3Igd2FybXVwLiBEZWZhdWx0IGJlaGF2aW9yIGZvciBleGlzdGluZworCQkvLyBjbGllbnRzIGlzIHVuY2hhbmdlZC4KKwkJc2FtcGxlc1BhcmFtIDo9IHF1ZXJ5LkdldCgic2FtcGxlcyIpCisJCXdhcm11cFBhcmFtIDo9IHF1ZXJ5LkdldCgid2FybXVwIikKKwkJbXVsdGlTYW1wbGUgOj0gc2FtcGxlc1BhcmFtICE9ICIiIHx8IHdhcm11cFBhcmFtICE9ICIiCisJCWlmICFtdWx0aVNhbXBsZSAmJiBzdHJpbmdzLkhhc1ByZWZpeCh1cmwsICJodHRwOi8vIikgewogCQkJdXJsID0gIiIKIAkJfQogCQl0aW1lb3V0LCBlcnIgOj0gc3RyY29udi5QYXJzZUludChxdWVyeS5HZXQoInRpbWVvdXQiKSwgMTAsIDE2KQpAQCAtMjI1LDEyICsyMzEsNDEgQEAgZnVuYyBnZXRQcm94eURlbGF5KHNlcnZlciAqU2VydmVyKSBmdW5jKHcgaHR0cC5SZXNwb25zZVdyaXRlciwgciAqaHR0cC5SZXF1ZXN0KQogCQkJcmVuZGVyLkpTT04odywgciwgRXJyQmFkUmVxdWVzdCkKIAkJCXJldHVybgogCQl9CisJCXNhbXBsZXMgOj0gMworCQlpZiBzYW1wbGVzUGFyYW0gIT0gIiIgeworCQkJcGFyc2VkU2FtcGxlcywgcGFyc2VFcnIgOj0gc3RyY29udi5BdG9pKHNhbXBsZXNQYXJhbSkKKwkJCWlmIHBhcnNlRXJyICE9IG5pbCB8fCBwYXJzZWRTYW1wbGVzIDwgMSB8fCBwYXJzZWRTYW1wbGVzID4gMTAgeworCQkJCXJlbmRlci5TdGF0dXMociwgaHR0cC5TdGF0dXNCYWRSZXF1ZXN0KQorCQkJCXJlbmRlci5KU09OKHcsIHIsIEVyckJhZFJlcXVlc3QpCisJCQkJcmV0dXJuCisJCQl9CisJCQlzYW1wbGVzID0gcGFyc2VkU2FtcGxlcworCQl9CisJCXdhcm11cCA6PSB0cnVlCisJCWlmIHdhcm11cFBhcmFtICE9ICIiIHsKKwkJCXBhcnNlZFdhcm11cCwgcGFyc2VFcnIgOj0gc3RyY29udi5QYXJzZUJvb2wod2FybXVwUGFyYW0pCisJCQlpZiBwYXJzZUVyciAhPSBuaWwgeworCQkJCXJlbmRlci5TdGF0dXMociwgaHR0cC5TdGF0dXNCYWRSZXF1ZXN0KQorCQkJCXJlbmRlci5KU09OKHcsIHIsIEVyckJhZFJlcXVlc3QpCisJCQkJcmV0dXJuCisJCQl9CisJCQl3YXJtdXAgPSBwYXJzZWRXYXJtdXAKKwkJfQogCiAJCXByb3h5IDo9IHIuQ29udGV4dCgpLlZhbHVlKEN0eEtleVByb3h5KS4oYWRhcHRlci5PdXRib3VuZCkKKwkJLy8gVGhlIHRpbWVvdXQgaXMgdGhlIHRvdGFsIGJ1ZGdldCBmb3IgdGhlIHdob2xlIHRlc3QuIEluCisJCS8vIG11bHRpLXNhbXBsZSBtb2RlIHRoYXQgYnVkZ2V0IGlzIHNoYXJlZCBzZXJpYWxseSBieSB0aGUgd2FybS11cAorCQkvLyBwbHVzIGFsbCBzYW1wbGVzLCBzbyBjYWxsZXJzIHNob3VsZCBzaXplIGl0IGFjY29yZGluZ2x5IChlYWNoCisJCS8vIGluZGl2aWR1YWwgcmVxdWVzdCBpcyBhZGRpdGlvbmFsbHkgY2FwcGVkIGluc2lkZSBVUkxUZXN0TXVsdGkpLgogCQljdHgsIGNhbmNlbCA6PSBjb250ZXh0LldpdGhUaW1lb3V0KGNvbnRleHQuQmFja2dyb3VuZCgpLCB0aW1lLk1pbGxpc2Vjb25kKnRpbWUuRHVyYXRpb24odGltZW91dCkpCiAJCWRlZmVyIGNhbmNlbCgpCiAKLQkJZGVsYXksIGVyciA6PSB1cmx0ZXN0LlVSTFRlc3QoY3R4LCB1cmwsIHByb3h5KQorCQl2YXIgZGVsYXkgdWludDE2CisJCWlmIG11bHRpU2FtcGxlIHsKKwkJCWRlbGF5LCBlcnIgPSB1cmx0ZXN0LlVSTFRlc3RNdWx0aShjdHgsIHVybCwgcHJveHksIHNhbXBsZXMsIHdhcm11cCkKKwkJfSBlbHNlIHsKKwkJCWRlbGF5LCBlcnIgPSB1cmx0ZXN0LlVSTFRlc3QoY3R4LCB1cmwsIHByb3h5KQorCQl9CiAJCWRlZmVyIGZ1bmMoKSB7CiAJCQlyZWFsVGFnIDo9IGdyb3VwLlJlYWxUYWcocHJveHksIE4uTmV0d29ya1RDUCkKIAkJCWlmIGVyciAhPSBuaWwgewo=
+diff --git a/common/urltest/urltest_multi.go b/common/urltest/urltest_multi.go
+new file mode 100644
+index 0000000..6317cd3
+--- /dev/null
++++ b/common/urltest/urltest_multi.go
+@@ -0,0 +1,159 @@
++package urltest
++
++// This file is intentionally self-contained: it adds multi-sample latency
++// testing without modifying any upstream function in urltest.go, so the
++// patch can be carried across sing-box releases by copying this file (and
++// the test file) and re-applying the small Clash API handler change in
++// experimental/clashapi/proxies.go.
++
++import (
++	"context"
++	"crypto/tls"
++	"fmt"
++	"net"
++	"net/http"
++	"sort"
++	"time"
++
++	"github.com/sagernet/sing-box/adapter"
++	C "github.com/sagernet/sing-box/constant"
++	"github.com/sagernet/sing-mux"
++	"github.com/sagernet/sing-snell"
++	"github.com/sagernet/sing/common"
++	M "github.com/sagernet/sing/common/metadata"
++	N "github.com/sagernet/sing/common/network"
++	"github.com/sagernet/sing/common/ntp"
++)
++
++// URLTestMulti is a v2rayNG-style latency test: unlike URLTest, which times a
++// single cold request (fresh connection, fresh TLS session, no reuse) and
++// reports that one sample, URLTestMulti shares one HTTP client/transport
++// across all requests so connection pooling behaves like a real client,
++// optionally discards one warm-up request (which pays the dial, DNS and TLS
++// costs), then measures samples requests and reports the median delay.
++//
++// The measured samples still go through the detour on a pooled connection,
++// so the result approximates the latency a real application sees on an
++// already-established proxy connection instead of full connection setup.
++//
++// Timeout semantics: the caller's ctx is the total budget for the warm-up
++// plus all samples (they run serially). Each individual request is
++// additionally capped by a per-sample timeout of C.TCPTimeout derived from
++// that ctx, so one hung request cannot starve the remaining samples of
++// their chance to run, but callers should still size the total budget for
++// 1+samples requests (e.g. a 2s budget cannot fit 10 samples of a 300ms
++// path). Like urlTest, requests use HEAD and the response status is not
++// checked, so endpoints that answer HEAD differently (e.g. 405) still
++// produce a measurement, with the same semantics as the single test.
++//
++// Result semantics: at least half of the measured samples (rounded up)
++// must succeed, otherwise the run is reported as failed — a median built
++// from a small minority of successes would hide a mostly-broken path.
++func URLTestMulti(ctx context.Context, link string, detour N.Dialer, samples int, warmup bool) (uint16, error) {
++	if samples <= 0 {
++		samples = 3
++	}
++	if samples > 10 {
++		samples = 10
++	}
++	if link == "" {
++		link = "https://www.gstatic.com/generate_204"
++	}
++	transport := &http.Transport{
++		DialContext: func(ctx context.Context, network, addr string) (net.Conn, error) {
++			host, port, err := net.SplitHostPort(addr)
++			if err != nil {
++				return nil, err
++			}
++			return detour.DialContext(ctx, network, M.ParseSocksaddrHostPortStr(host, port))
++		},
++		TLSClientConfig: &tls.Config{
++			Time:    ntp.TimeFuncFromContext(ctx),
++			RootCAs: adapter.RootPoolFromContext(ctx),
++		},
++		MaxIdleConnsPerHost: 1,
++	}
++	defer transport.CloseIdleConnections()
++	client := &http.Client{
++		Transport: transport,
++		CheckRedirect: func(req *http.Request, via []*http.Request) error {
++			return http.ErrUseLastResponse
++		},
++		Timeout: C.TCPTimeout,
++	}
++	// For multiplex detours, keep-session applies to every request, not
++	// just the warm-up: the warm-up establishes the kept session and the
++	// measured samples must dial under the same session semantics to reuse
++	// it, instead of switching context flavors mid-run.
++	requestCtx := ctx
++	if multiplexOutbound, isMultiplexOutbound := common.Cast[adapter.OutboundWithMultiplex](detour); isMultiplexOutbound && multiplexOutbound.MultiplexEnabled() {
++		requestCtx = adapter.ContextWithKeepSession(requestCtx)
++		requestCtx = mux.ContextWithKeepSession(requestCtx)
++		requestCtx = contextWithQUICKeepSession(requestCtx)
++		requestCtx = snell.ContextWithKeepSession(requestCtx)
++	}
++	doSample := func() (uint16, error) {
++		// Per-sample timeout derived from the shared budget: one hung
++		// request is cut at C.TCPTimeout instead of consuming the whole
++		// run, leaving the remaining samples their share of the budget.
++		sampleCtx, cancel := context.WithTimeout(requestCtx, C.TCPTimeout)
++		defer cancel()
++		req, err := http.NewRequestWithContext(sampleCtx, http.MethodHead, link, nil)
++		if err != nil {
++			return 0, err
++		}
++		start := time.Now()
++		resp, err := client.Do(req)
++		if err != nil {
++			return 0, err
++		}
++		resp.Body.Close()
++		delay := time.Since(start) / time.Millisecond
++		if delay > 65535 {
++			delay = 65535
++		}
++		return uint16(delay), nil
++	}
++	if warmup {
++		// The warm-up result is intentionally discarded: it establishes the
++		// pooled connection (and any DNS/TLS/session caches along the chain)
++		// that the measured samples then reuse. Its error is not fatal; the
++		// measured samples below report failures on their own.
++		_, _ = doSample()
++	}
++	delays := make([]uint16, 0, samples)
++	var lastErr error
++	for i := 0; i < samples; i++ {
++		delay, err := doSample()
++		if err != nil {
++			lastErr = err
++			if ctx.Err() != nil {
++				return 0, err
++			}
++			continue
++		}
++		delays = append(delays, delay)
++	}
++	if len(delays) < (samples+1)/2 {
++		if lastErr != nil {
++			return 0, fmt.Errorf("urltest: only %d of %d samples succeeded: %w", len(delays), samples, lastErr)
++		}
++		return 0, fmt.Errorf("urltest: only %d of %d samples succeeded", len(delays), samples)
++	}
++	return MedianDelay(delays), nil
++}
++
++// MedianDelay returns the median of the given delay samples.
++func MedianDelay(delays []uint16) uint16 {
++	if len(delays) == 0 {
++		return 0
++	}
++	sorted := make([]uint16, len(delays))
++	copy(sorted, delays)
++	sort.Slice(sorted, func(i, j int) bool { return sorted[i] < sorted[j] })
++	middle := len(sorted) / 2
++	if len(sorted)%2 == 1 {
++		return sorted[middle]
++	}
++	return uint16((uint32(sorted[middle-1]) + uint32(sorted[middle])) / 2)
++}
+diff --git a/common/urltest/urltest_multi_test.go b/common/urltest/urltest_multi_test.go
+new file mode 100644
+index 0000000..41c4b23
+--- /dev/null
++++ b/common/urltest/urltest_multi_test.go
+@@ -0,0 +1,128 @@
++package urltest
++
++import (
++	"context"
++	"errors"
++	"net"
++	"net/http"
++	"net/http/httptest"
++	"sync/atomic"
++	"testing"
++	"time"
++
++	M "github.com/sagernet/sing/common/metadata"
++)
++
++type directDialer struct {
++	dialer net.Dialer
++}
++
++func (d *directDialer) DialContext(ctx context.Context, network string, destination M.Socksaddr) (net.Conn, error) {
++	return d.dialer.DialContext(ctx, network, destination.String())
++}
++
++func (d *directDialer) ListenPacket(ctx context.Context, destination M.Socksaddr) (net.PacketConn, error) {
++	var listenConfig net.ListenConfig
++	return listenConfig.ListenPacket(ctx, "udp", destination.String())
++}
++
++func TestMedianDelay(t *testing.T) {
++	cases := []struct {
++		input    []uint16
++		expected uint16
++	}{
++		{nil, 0},
++		{[]uint16{100}, 100},
++		{[]uint16{300, 100, 200}, 200},
++		{[]uint16{100, 200, 300, 400}, 250},
++		{[]uint16{5008, 170, 180}, 180},
++	}
++	for _, c := range cases {
++		if got := MedianDelay(c.input); got != c.expected {
++			t.Errorf("MedianDelay(%v) = %d, want %d", c.input, got, c.expected)
++		}
++	}
++}
++
++func TestURLTestMultiReusesConnection(t *testing.T) {
++	var requests atomic.Int32
++	var newConns atomic.Int32
++	server := httptest.NewUnstartedServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
++		requests.Add(1)
++		w.WriteHeader(http.StatusNoContent)
++	}))
++	server.Config.ConnState = func(conn net.Conn, state http.ConnState) {
++		if state == http.StateNew {
++			newConns.Add(1)
++		}
++	}
++	server.Start()
++	defer server.Close()
++
++	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
++	defer cancel()
++	delay, err := URLTestMulti(ctx, server.URL, &directDialer{}, 3, true)
++	if err != nil {
++		t.Fatalf("URLTestMulti: %v", err)
++	}
++	// 1 warm-up + 3 measured samples.
++	if got := requests.Load(); got != 4 {
++		t.Errorf("server saw %d requests, want 4", got)
++	}
++	// All 4 requests must share the single pooled connection established
++	// by the warm-up; a fresh connection per request is exactly the cold
++	// behavior this function exists to avoid.
++	if got := newConns.Load(); got != 1 {
++		t.Errorf("server saw %d new connections, want 1 (connection reuse)", got)
++	}
++	t.Logf("median delay: %d ms", delay)
++}
++
++type flakyDialer struct {
++	directDialer
++	dials  atomic.Int32
++	failOn map[int32]bool
++}
++
++func (d *flakyDialer) DialContext(ctx context.Context, network string, destination M.Socksaddr) (net.Conn, error) {
++	n := d.dials.Add(1)
++	if d.failOn[n] {
++		return nil, errors.New("simulated dial failure")
++	}
++	return d.directDialer.DialContext(ctx, network, destination)
++}
++
++func TestURLTestMultiPartialFailure(t *testing.T) {
++	// Connection: close on every response forces each sample to dial, so
++	// dial failures map 1:1 to sample failures.
++	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
++		w.Header().Set("Connection", "close")
++		w.WriteHeader(http.StatusNoContent)
++	}))
++	defer server.Close()
++
++	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
++	defer cancel()
++
++	// 1 of 3 samples succeeds: below the majority threshold, must error.
++	_, err := URLTestMulti(ctx, server.URL, &flakyDialer{failOn: map[int32]bool{2: true, 3: true}}, 3, false)
++	if err == nil {
++		t.Fatal("expected error when only 1 of 3 samples succeeds")
++	}
++	// 2 of 3 samples succeed: median of the successes is reported.
++	delay, err := URLTestMulti(ctx, server.URL, &flakyDialer{failOn: map[int32]bool{2: true}}, 3, false)
++	if err != nil {
++		t.Fatalf("expected success with 2 of 3 samples, got: %v", err)
++	}
++	t.Logf("partial-failure median delay: %d ms", delay)
++}
++
++func TestURLTestMultiFailure(t *testing.T) {
++	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
++	defer cancel()
++	// Nothing listens on this port; all samples must fail.
++	_, err := URLTestMulti(ctx, "http://127.0.0.1:1/generate_204", &directDialer{}, 2, false)
++	if err == nil {
++		t.Fatal("expected error for unreachable target")
++	}
++}
+diff --git a/experimental/clashapi/proxies.go b/experimental/clashapi/proxies.go
+index fd8a6e2..1a5f691 100644
+--- a/experimental/clashapi/proxies.go
++++ b/experimental/clashapi/proxies.go
+@@ -216,7 +216,13 @@ func getProxyDelay(server *Server) func(w http.ResponseWriter, r *http.Request)
+ 	return func(w http.ResponseWriter, r *http.Request) {
+ 		query := r.URL.Query()
+ 		url := query.Get("url")
+-		if strings.HasPrefix(url, "http://") {
++		// Opt-in multi-sample mode (v2rayNG-style): enabled only when the
++		// caller passes samples and/or warmup. Default behavior for existing
++		// clients is unchanged.
++		samplesParam := query.Get("samples")
++		warmupParam := query.Get("warmup")
++		multiSample := samplesParam != "" || warmupParam != ""
++		if !multiSample && strings.HasPrefix(url, "http://") {
+ 			url = ""
+ 		}
+ 		timeout, err := strconv.ParseInt(query.Get("timeout"), 10, 16)
+@@ -225,12 +231,41 @@ func getProxyDelay(server *Server) func(w http.ResponseWriter, r *http.Request)
+ 			render.JSON(w, r, ErrBadRequest)
+ 			return
+ 		}
++		samples := 3
++		if samplesParam != "" {
++			parsedSamples, parseErr := strconv.Atoi(samplesParam)
++			if parseErr != nil || parsedSamples < 1 || parsedSamples > 10 {
++				render.Status(r, http.StatusBadRequest)
++				render.JSON(w, r, ErrBadRequest)
++				return
++			}
++			samples = parsedSamples
++		}
++		warmup := true
++		if warmupParam != "" {
++			parsedWarmup, parseErr := strconv.ParseBool(warmupParam)
++			if parseErr != nil {
++				render.Status(r, http.StatusBadRequest)
++				render.JSON(w, r, ErrBadRequest)
++				return
++			}
++			warmup = parsedWarmup
++		}
+ 
+ 		proxy := r.Context().Value(CtxKeyProxy).(adapter.Outbound)
++		// The timeout is the total budget for the whole test. In
++		// multi-sample mode that budget is shared serially by the warm-up
++		// plus all samples, so callers should size it accordingly (each
++		// individual request is additionally capped inside URLTestMulti).
+ 		ctx, cancel := context.WithTimeout(context.Background(), time.Millisecond*time.Duration(timeout))
+ 		defer cancel()
+ 
+-		delay, err := urltest.URLTest(ctx, url, proxy)
++		var delay uint16
++		if multiSample {
++			delay, err = urltest.URLTestMulti(ctx, url, proxy, samples, warmup)
++		} else {
++			delay, err = urltest.URLTest(ctx, url, proxy)
++		}
+ 		defer func() {
+ 			realTag := group.RealTag(proxy, N.NetworkTCP)
+ 			if err != nil {
