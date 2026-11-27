@@ -16,11 +16,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           path: wf
-      - name: Checkout v1.14.4 tag
-        uses: actions/checkout@v4
-        with:
-          ref: v1.14.4
-          path: src
+      - name: Fetch v1.14.4 source from upstream
+        run: git clone --depth 1 --branch v1.14.4 https://github.com/SagerNet/sing-box.git src
       - name: Apply patch
         working-directory: src
         run: git apply ../wf/finch.patch
